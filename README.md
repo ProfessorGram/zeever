@@ -1,2 +1,2 @@
-# zeever
-Theme for a digital agency website
+# Zeever
+BackdropCMS theme for a digital agency website

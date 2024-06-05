@@ -10,3 +10,6 @@ Work on this theme and the associated recipes/packages is being discussed in the
 wiki for this project.
 
 https://github.com/backdrop-contrib/zeever/wiki
+
+While not yet complete, the code for our Digital Agency package can be found and
+tested here: https://github.com/backdrop-contrib/digital_agency

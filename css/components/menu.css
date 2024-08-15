@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+  .navbar-left {
+    flex-grow: initial;
+    margin: 0;
+  }
+  .navbar-collapse {
+      margin: initial;
+      justify-content: flex-end !important;
+  }
+}

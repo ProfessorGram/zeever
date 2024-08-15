@@ -7,15 +7,15 @@
 /**
  * Implements hook_css_alter().
  */
-function minnesota_css_alter(&$css) {
-  $theme_path = backdrop_get_path('theme', 'minnesota');
+function zeever_css_alter(&$css) {
+  $theme_path = backdrop_get_path('theme', 'zeever');
 
   // Bootstrap
 
-  $cdn_version = theme_get_setting('minnesota_cdn');
+  $cdn_version = theme_get_setting('zeever_cdn');
   if ($cdn_version) {
 
-    $bootswatch = theme_get_setting('minnesota_bootswatch');
+    $bootswatch = theme_get_setting('zeever_bootswatch');
     if ($cdn_version == 'module') {
       // Use bundled library
       $bootstrap_src = '/' . $theme_path;
@@ -78,12 +78,12 @@ function minnesota_css_alter(&$css) {
 /**
  * Implements hook_js_alter().
  */
-function minnesota_js_alter(&$js) {
-  $theme_path = backdrop_get_path('theme', 'minnesota');
+function zeever_js_alter(&$js) {
+  $theme_path = backdrop_get_path('theme', 'zeever');
 
   // Boostrap
 
-  $cdn_version = theme_get_setting('minnesota_cdn');
+  $cdn_version = theme_get_setting('zeever_cdn');
   if ($cdn_version) {
     if ($cdn_version == 'module') {
       // Use bundled library
@@ -113,7 +113,7 @@ function minnesota_js_alter(&$js) {
 /**
  * Internal function to make sure Header block is rendered.
  */
-function minnesota_is_header($set) {
+function zeever_is_header($set) {
   static $is_header;
   if (0 == strcmp($set, 'get') ) {
     return $is_header;
@@ -125,19 +125,19 @@ function minnesota_is_header($set) {
 /**
  * Implements hook_preprocess_layout().
  */
-function minnesota_preprocess_layout(&$variables) {
+function zeever_preprocess_layout(&$variables) {
   $layout = $variables['layout'];
   $layout_name = $layout->layout;
 
   foreach ($layout->content as $key => $block) {
     if ($block->module == 'system' && $block->delta == 'header') {
-      minnesota_is_header(true);
+      zeever_is_header(true);
     }
   }
 
   // Default Backdrop layouts contain both .container and .container-fluid.
   // Remove the one we're not using.
-  if (theme_get_setting('minnesota_container') == 'container') {
+  if (theme_get_setting('zeever_container') == 'container') {
     backdrop_add_js('(function($) { $(".container.container-fluid").removeClass("container-fluid");})(jQuery);', array('type' => 'inline', 'scope' => 'footer'));
   }
   else {
@@ -148,7 +148,7 @@ function minnesota_preprocess_layout(&$variables) {
 /**
  * Implements hook_preprocess_page().
  */
-function minnesota_preprocess_page(&$variables) {
+function zeever_preprocess_page(&$variables) {
   $no_old_ie_compatibility_modes = array(
     '#tag' => 'meta',
     '#attributes' => array(
@@ -158,27 +158,27 @@ function minnesota_preprocess_page(&$variables) {
   );
 
   // // Adding class for bootswatch theme to help with css overrides
-  // if ($bootswatch = theme_get_setting('minnesota_bootswatch')) {
+  // if ($bootswatch = theme_get_setting('zeever_bootswatch')) {
   //   $variables['classes'][] = $bootswatch;
   // }
 
   // backdrop_add_html_head($no_old_ie_compatibility_modes, 'no_old_ie_compatibility_modes');
 
-  // if (minnesota_is_header('get')) {
+  // if (zeever_is_header('get')) {
 
   //   if (function_exists('admin_bar_suppress') && user_access('access administration bar') && !admin_bar_suppress(FALSE)) {
   //     $variables['classes'][] = 'navbar-admin-bar';
   //   }
-  //   if ($navbar_position = theme_get_setting('minnesota_navbar_position')) {
+  //   if ($navbar_position = theme_get_setting('zeever_navbar_position')) {
   //     $variables['classes'][] = 'navbar-is-' . $navbar_position;
 
   //      $config = config('admin_bar.settings');
 
   //     if (function_exists('admin_bar_suppress') &&  $navbar_position == 'fixed-top' && user_access('access administration bar') && !admin_bar_suppress(FALSE) && !$config->get('position_fixed') ) {
-  //       backdrop_add_js(backdrop_get_path('theme', 'minnesota') . '/js/navbar-fixed-top.js');
+  //       backdrop_add_js(backdrop_get_path('theme', 'zeever') . '/js/navbar-fixed-top.js');
   //     }
   //     if ($navbar_position == 'static-top') {
-  //       backdrop_add_js(backdrop_get_path('theme', 'minnesota') . '/js/navbar-static-top.js');
+  //       backdrop_add_js(backdrop_get_path('theme', 'zeever') . '/js/navbar-static-top.js');
   //     }
   //   }
   // }
@@ -210,9 +210,9 @@ function minnesota_preprocess_page(&$variables) {
 /**
  * Implements hook_preprocess_header().
  */
-function minnesota_preprocess_header(&$variables) {
+function zeever_preprocess_header(&$variables) {
   $variables['navigation'] = '';
-  $navbar_menu_position = theme_get_setting('minnesota_navbar_menu_position');
+  $navbar_menu_position = theme_get_setting('zeever_navbar_menu_position');
   if ($navbar_menu_position == 'navbar-right') {
     $variables['navbar_menu_position'] = 'd-flex justify-content-end';
   }
@@ -220,20 +220,20 @@ function minnesota_preprocess_header(&$variables) {
     $variables['navbar_menu_position'] = 'd-flex justify-content-between';
   }
 
-  if ($navbar_position = theme_get_setting('minnesota_navbar_user_menu')) {
+  if ($navbar_position = theme_get_setting('zeever_navbar_user_menu')) {
     $user_menu = menu_tree('user-menu');
     $variables['navigation'] = render($user_menu);
   }
 
   $variables['navbar_classes_array'] = array('navbar navbar-expand-lg');
-  if ($navbar_position = theme_get_setting('minnesota_navbar_position')) {
+  if ($navbar_position = theme_get_setting('zeever_navbar_position')) {
     $variables['navbar_classes_array'][] = 'navbar-' . $navbar_position;
     $variables['navbar_classes_array'][] = $navbar_position;
   }
 
-  $variables['container_class'] = theme_get_setting('minnesota_container');
+  $variables['container_class'] = theme_get_setting('zeever_container');
 
-  $navbar_style = theme_get_setting('minnesota_navbar_style');
+  $navbar_style = theme_get_setting('zeever_navbar_style');
   if ($navbar_style == 'bg-primary') {
     $variables['navbar_classes_array'][] = 'navbar-dark bg-primary';
   }
@@ -248,9 +248,9 @@ function minnesota_preprocess_header(&$variables) {
 /**
  * Implements hook_links().
  */
-function minnesota_links__header_menu($menu) {
+function zeever_links__header_menu($menu) {
   $menu['attributes']['class'] = array('menu','nav','navbar-nav');
-  if ($navbar_menu_position = theme_get_setting('minnesota_navbar_menu_position')) {
+  if ($navbar_menu_position = theme_get_setting('zeever_navbar_menu_position')) {
     $menu['attributes']['class'][] = $navbar_menu_position;
   }
   foreach ($menu['links'] as $item => $link) {
@@ -263,9 +263,9 @@ function minnesota_links__header_menu($menu) {
 /**
  * Implements hook_links().
  */
-function minnesota_links__user_menu($menu) {
+function zeever_links__user_menu($menu) {
   //$menu['attributes']['class'] = array('menu','nav','navbar-nav');
-  if ($navbar_menu_position = theme_get_setting('minnesota_navbar_menu_position')) {
+  if ($navbar_menu_position = theme_get_setting('zeever_navbar_menu_position')) {
     $menu['attributes']['class'][] = $navbar_menu_position;
   }
   foreach ($menu['links'] as $item => $link) {
@@ -279,8 +279,8 @@ function minnesota_links__user_menu($menu) {
 /**
  * Implements hook_menu_tree().
  */
-function minnesota_menu_tree__user_menu($variables) {
-  if ($navbar_position = theme_get_setting('minnesota_navbar_user_menu')) {
+function zeever_menu_tree__user_menu($variables) {
+  if ($navbar_position = theme_get_setting('zeever_navbar_user_menu')) {
     $menu = menu_navigation_links('user-menu');
     $links = $menu ? theme('links__user_menu', array('links' => $menu)) : NULL;
     return '
@@ -297,7 +297,7 @@ function minnesota_menu_tree__user_menu($variables) {
 /**
  * Implements hook_field_group_pre_render().
  */
-function minnesota_field_group_pre_render_alter(&$element, $group, &$form) {
+function zeever_field_group_pre_render_alter(&$element, $group, &$form) {
   if ($group->format_type == 'tab') {
     $element['#group_fieldset'] = TRUE;
   }
@@ -314,7 +314,7 @@ function minnesota_field_group_pre_render_alter(&$element, $group, &$form) {
  *
  * @ingroup themeable
  */
-function minnesota_fieldset($variables) {
+function zeever_fieldset($variables) {
   $element = $variables['element'];
   // Check is the fieldset is in a vertical tab. Field group's vtabs are a bit
   // different so we need to check the field group class to know.
@@ -353,7 +353,7 @@ function minnesota_fieldset($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_button($variables) {
+function zeever_button($variables) {
 
   if (isset($variables['element']['#attributes']['class'])) {
     $default = TRUE;
@@ -393,7 +393,7 @@ function minnesota_button($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_email($variables) {
+function zeever_email($variables) {
   $variables['element']['#attributes']['class'][] = 'form-control';
   return theme_email($variables);
 }
@@ -409,7 +409,7 @@ function minnesota_email($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_webform_email($variables) {
+function zeever_webform_email($variables) {
   $variables['element']['#attributes']['class'][] = 'form-control';
   return theme_webform_email($variables);
 }
@@ -425,7 +425,7 @@ function minnesota_webform_email($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_textfield($variables) {
+function zeever_textfield($variables) {
   $variables['element']['#attributes']['class'][] = 'form-control';
   return theme_textfield($variables);
 }
@@ -441,7 +441,7 @@ function minnesota_textfield($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_textarea($variables) {
+function zeever_textarea($variables) {
   $variables['element']['#attributes']['class'][] = 'form-control';
   return theme_textarea($variables);
 }
@@ -451,7 +451,7 @@ function minnesota_textarea($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_checkbox($variables) {
+function zeever_checkbox($variables) {
   $variables['element']['#attributes']['class'][] = 'form-check-input';
   return theme_checkbox($variables);
 }
@@ -461,7 +461,7 @@ function minnesota_checkbox($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_radio($variables) {
+function zeever_radio($variables) {
   $variables['element']['#attributes']['class'][] = 'form-check-input';
   return theme_radio($variables);
 }
@@ -512,7 +512,7 @@ function minnesota_radio($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_form_element($variables) {
+function zeever_form_element($variables) {
   if (isset($variables['element']['#type'])) {
     if ($variables['element']['#type'] == 'checkbox') {
       $variables['element']['#wrapper_attributes']['class'][] = 'checkbox';
@@ -544,7 +544,7 @@ function minnesota_form_element($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_password($variables) {
+function zeever_password($variables) {
   $variables['element']['#attributes']['class'][] = 'form-control';
   return theme_password($variables);
 }
@@ -560,7 +560,7 @@ function minnesota_password($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_search($variables) {
+function zeever_search($variables) {
 
   if (isset($variables['element']['#attributes']['placeholder']) && $variables['element']['#attributes']['placeholder'] == t('Menu search')) {
     return theme_search($variables);
@@ -585,7 +585,7 @@ function minnesota_search($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_select($variables) {
+function zeever_select($variables) {
   if (isset($variables['element']['#size'])) {
     unset($variables['element']['#size']);
   }
@@ -596,7 +596,7 @@ function minnesota_select($variables) {
 /**
  * Implements hook_preprocess_table().
  */
-function minnesota_preprocess_table(&$variables) {
+function zeever_preprocess_table(&$variables) {
   $variables['attributes']['class'][] = 'table';
   $variables['attributes']['class'][] = 'table-hover';
   if (!in_array('table-no-striping', $variables['attributes']['class'])) {
@@ -617,7 +617,7 @@ function minnesota_preprocess_table(&$variables) {
  *
  * @ingroup themeable
  */
-function minnesota_user_permission_description($variables) {
+function zeever_user_permission_description($variables) {
   $description = array();
   $permission_item = $variables['permission_item'];
   if (!empty($permission_item['description'])) {
@@ -645,7 +645,7 @@ function minnesota_user_permission_description($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_admin_block($variables) {
+function zeever_admin_block($variables) {
   $block = $variables['block'];
   $output = '';
 
@@ -678,7 +678,7 @@ function minnesota_admin_block($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_system_admin_index($variables) {
+function zeever_system_admin_index($variables) {
   $menu_items = $variables['menu_items'];
 
   $stripe = 0;
@@ -732,7 +732,7 @@ function minnesota_system_admin_index($variables) {
  *
  * @ingroup themeable
  */
-function minnesota_admin_page($variables) {
+function zeever_admin_page($variables) {
   $blocks = $variables['blocks'];
 
   $stripe = 0;
@@ -773,7 +773,7 @@ function minnesota_admin_page($variables) {
  * @ingroup themeable
  * @see menu_local_tasks()
  */
-function minnesota_menu_local_tasks(&$variables) {
+function zeever_menu_local_tasks(&$variables) {
   $output = '';
 
   if (!empty($variables['primary'])) {
@@ -803,7 +803,7 @@ function minnesota_menu_local_tasks(&$variables) {
 /**
  * Implements hook_links().
  */
-function minnesota_links__dropbutton($menu) {
+function zeever_links__dropbutton($menu) {
   foreach ($menu['links'] as $name => $settings) {
     $menu['links'][$name]['attributes']['class'][] = 'btn';
     $menu['links'][$name]['attributes']['class'][] = 'btn-default';
@@ -814,7 +814,7 @@ function minnesota_links__dropbutton($menu) {
 /**
  * Returns rendered HTML for the local actions.
  */
-function minnesota_menu_local_actions(&$variables) {
+function zeever_menu_local_actions(&$variables) {
   foreach ($variables['actions'] as $key => $link) {
     switch($link['#link']['path']) {
       case 'admin/people/create':
@@ -843,7 +843,7 @@ function minnesota_menu_local_actions(&$variables) {
  *   An associative array containing:
  *   - breadcrumb: An array containing the breadcrumb links.
  */
-function minnesota_breadcrumb($variables) {
+function zeever_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   $output = '';
   if (!empty($breadcrumb)) {
@@ -870,15 +870,15 @@ function minnesota_breadcrumb($variables) {
 /**
  * Implements hook_preprocess_breadcrumb().
  */
-function minnesota_preprocess_breadcrumb(&$variables) {
+function zeever_preprocess_breadcrumb(&$variables) {
   $breadcrumb = &$variables['breadcrumb'];
 
   // Optionally get rid of the homepage link.
-  $show_breadcrumb_home = theme_get_setting('minnesota_breadcrumb_home');
+  $show_breadcrumb_home = theme_get_setting('zeever_breadcrumb_home');
   if (!$show_breadcrumb_home) {
     array_shift($breadcrumb);
   }
-  if (theme_get_setting('minnesota_breadcrumb_title') && !empty($breadcrumb)) {
+  if (theme_get_setting('zeever_breadcrumb_title') && !empty($breadcrumb)) {
     $item = menu_get_item();
     $breadcrumb[] = !empty($item['tab_parent']) ? check_plain($item['title']) : backdrop_get_title();
   }
@@ -898,7 +898,7 @@ function minnesota_preprocess_breadcrumb(&$variables) {
  *
  * @ingroup themeable
  */
-function minnesota_container($variables) {
+function zeever_container($variables) {
   if (isset($variables['element']['#attributes']['class'][0]) && $variables['element']['#attributes']['class'][0] == 'views-display-column') {
     $variables['element']['#attributes']['class'] = array('col-xs-12','cols-sm-12', 'col-md-4');
   }
@@ -908,14 +908,14 @@ function minnesota_container($variables) {
 /**
  * Display a view as a table style.
  */
-function minnesota_preprocess_views_view_table(&$variables) {
+function zeever_preprocess_views_view_table(&$variables) {
   $variables['classes'][] = 'table';
 }
 
 /**
  * Implements hook_form_alter().
  */
-function minnesota_form_alter(array &$form, array &$form_state = array(), $form_id = NULL) {
+function zeever_form_alter(array &$form, array &$form_state = array(), $form_id = NULL) {
   if ($form_id) {
     if (isset($form['actions']['cancel']) && isset($form['actions']['cancel']['#type']) && $form['actions']['cancel']['#type'] == 'link') {
        $form['actions']['cancel']['#options']['attributes']['class'][] = 'btn';
@@ -934,7 +934,7 @@ function minnesota_form_alter(array &$form, array &$form_state = array(), $form_
  *
  * Display the list of available node types for node creation.
  */
-function minnesota_node_add_list($variables) {
+function zeever_node_add_list($variables) {
   $content = $variables['content'];
   $output = '';
   if ($content) {
@@ -961,8 +961,8 @@ function minnesota_node_add_list($variables) {
  *
  * Use unordered list markup in both compact and extended mode.
  */
-function minnesota_admin_block_content($variables) {
-  return minnesota_node_add_list($variables);
+function zeever_admin_block_content($variables) {
+  return zeever_node_add_list($variables);
 }
 
 /**
@@ -974,7 +974,7 @@ function minnesota_admin_block_content($variables) {
  *
  * @see user-picture.tpl.php
  */
-function minnesota_preprocess_user_picture(&$variables) {
+function zeever_preprocess_user_picture(&$variables) {
   $variables['user_picture'] = '';
   if (config_get('system.core', 'user_pictures')) {
     $account = $variables['account'];
@@ -1017,8 +1017,8 @@ function minnesota_preprocess_user_picture(&$variables) {
 /**
  * Implements hook_preprocess_comment().
  */
-function minnesota_preprocess_comment(&$variables) {
-  if (theme_get_setting('minnesota_datetime')) {
+function zeever_preprocess_comment(&$variables) {
+  if (theme_get_setting('zeever_datetime')) {
     $comment = $variables['elements']['#comment'];
     $variables['timeago'] = t('@time ago', array('@time' => format_interval(time() - $comment->changed)));
   }
@@ -1027,8 +1027,8 @@ function minnesota_preprocess_comment(&$variables) {
 /**
  * Implements hook_preprocess_node().
  */
-function minnesota_preprocess_node(&$variables) {
-  if (theme_get_setting('minnesota_datetime')) {
+function zeever_preprocess_node(&$variables) {
+  if (theme_get_setting('zeever_datetime')) {
     $node = $variables['elements']['#node'];
     $variables['timeago'] = t('@time ago', array('@time' => format_interval(time() - $node->created)));
   }
@@ -1037,7 +1037,7 @@ function minnesota_preprocess_node(&$variables) {
 /**
  * Overrides theme_progress_bar().
  */
-function minnesota_progress_bar($variables) {
+function zeever_progress_bar($variables) {
   $output = '<div id="progress">';
   $output .= '<div class="progress">';
   $output .= '  <div class="progress-bar" role="progressbar" style="width: ' . $variables['percent'] . '%" aria-valuenow="' . $variables['percent'] . '" aria-valuemin="0" aria-valuemax="100"></div>';

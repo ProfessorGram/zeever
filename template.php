@@ -157,31 +157,27 @@ function zeever_preprocess_page(&$variables) {
     ),
   );
 
-  // // Adding class for bootswatch theme to help with css overrides
-  // if ($bootswatch = theme_get_setting('zeever_bootswatch')) {
-  //   $variables['classes'][] = $bootswatch;
-  // }
+  // Add the Poppins font to the header.
+  backdrop_add_html_head_link(array(
+    'rel' => 'preconnect',
+    // Force the URL to be absolute, for consistency with other <link> tags
+    // output by Backdrop.
+    'href' => 'https://fonts.googleapis.com',
+  ));
 
-  // backdrop_add_html_head($no_old_ie_compatibility_modes, 'no_old_ie_compatibility_modes');
+  backdrop_add_html_head_link(array(
+    'rel' => 'preconnect',
+    // Force the URL to be absolute, for consistency with other <link> tags
+    // output by Backdrop.
+    'href' => 'https://fonts.gstatic.com',
+  ));
 
-  // if (zeever_is_header('get')) {
-
-  //   if (function_exists('admin_bar_suppress') && user_access('access administration bar') && !admin_bar_suppress(FALSE)) {
-  //     $variables['classes'][] = 'navbar-admin-bar';
-  //   }
-  //   if ($navbar_position = theme_get_setting('zeever_navbar_position')) {
-  //     $variables['classes'][] = 'navbar-is-' . $navbar_position;
-
-  //      $config = config('admin_bar.settings');
-
-  //     if (function_exists('admin_bar_suppress') &&  $navbar_position == 'fixed-top' && user_access('access administration bar') && !admin_bar_suppress(FALSE) && !$config->get('position_fixed') ) {
-  //       backdrop_add_js(backdrop_get_path('theme', 'zeever') . '/js/navbar-fixed-top.js');
-  //     }
-  //     if ($navbar_position == 'static-top') {
-  //       backdrop_add_js(backdrop_get_path('theme', 'zeever') . '/js/navbar-static-top.js');
-  //     }
-  //   }
-  // }
+  backdrop_add_html_head_link(array(
+    'rel' => 'stylesheet',
+    // Force the URL to be absolute, for consistency with other <link> tags
+    // output by Backdrop.
+    'href' => 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700;&display=swap',
+  ));
 
   // Add 'not-front' if we're not front.
   if (!$variables['is_front']) {

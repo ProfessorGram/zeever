@@ -8,3 +8,12 @@
       justify-content: flex-end !important;
   }
 }
+
+.l-header .menu-dropdown {
+  padding-bottom: 10px;
+  font-weight: 500;
+}
+
+.navbar {
+  margin-bottom: 0;
+}

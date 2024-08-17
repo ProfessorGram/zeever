@@ -16,3 +16,6 @@ stylesheets[all][] = css/components/menu-dropdown.breakpoint-queries.css
 stylesheets[all][] = css/components/menu-dropdown.css
 stylesheets[all][] = css/components/menu-toggle.css
 stylesheets[all][] = css/components/menu.css
+stylesheets[all][] = css/components/hero.css
+stylesheets[all][] = css/components/cards.css
+stylesheets[all][] = css/recipes.css

@@ -33,6 +33,11 @@ a.button:hover {
 	padding: 0px;
 }
 
+.container {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 .node-type-service img {
 	filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
 }
@@ -66,7 +71,6 @@ a.button:hover {
 
 .block-content-wrapper h2 {
 	margin: 3rem auto;
-	font-size: 3rem;
 	font-weight: 600;
 }
 
@@ -123,9 +127,8 @@ header .navbar {
 	color: #bcf4f0;
 }
 
-.l-header .block,
 .l-top .block {
-	margin-bottom: 0;
+	margin-bottom: 20px;
 	padding-bottom: 0;
 }
 
@@ -179,6 +182,7 @@ a.name.navbar-brand:hover {
 
 /* Taxonomy View */
 
+.view-header,
 article {
 	background-color: #3d3838;
 	padding:  3%;

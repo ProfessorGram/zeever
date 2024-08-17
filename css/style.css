@@ -109,7 +109,6 @@ header .navbar {
 	font-weight: 800;
 }
 
-
 .views-grid-box {
   background-color: #3d3838;
 }
@@ -122,10 +121,6 @@ header .navbar {
 
 .view .views-grid-box a {
 	color: #bcf4f0;
-}
-
-.views-field.views-field-title {
-	min-height: 3.5rem;
 }
 
 .l-header .block,
@@ -208,4 +203,10 @@ article.node .content {
 
 .btn:hover {
 	color: yellow;
+}
+
+/*  Services Block */
+
+.views-field-field-services-image img {
+	filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
 }

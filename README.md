@@ -6,10 +6,11 @@ support the [Digital Agency Recipe Package](https://backdropcms.org/project/digi
 The Digital Agency Recipe Package is a bundle of functionality and sample
 content to support a digital agency, artist, or consulting website.
 
-In the future, we hope that Zeever will work on general sites as well. 
+While this theme is currently narrowly focused on the specific features in that recipe package,
+in the future, we hope that Zeever will be usable on a broader variety of sites. 
 
-This theme is currently in Alpha Release stage, meaning that it is still undergoing
-development and may change frequently. 
+**This theme is currently in Alpha Release stage, meaning that it is still undergoing
+development and may change frequently.**
 
 If you install an Alpha version of Zeever and then later upgrade it, you may 
 experience changes that break your site. 

@@ -92,12 +92,33 @@ a.button:hover {
 
 .name.navbar-brand {
 	font-size: 2rem;
-	font-weight: 900;
+	font-weight: 600;
+	padding: 0;
+	margin: 0;
+	float: none;
+}
+
+.navbar,
+.navbar-collapse,
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.navbar-nav>li>a {
+	padding: 0;
+	margin: 0;
 }
 
 .l-content {
-/*	background-color: #0B0C10;*/
 	color:  whitesmoke;
+}
+
+.block-system-header,
+.navbar {
+	padding: 0;
+	margin: 0;
 }
 
 /* Front Page Hero Image */
@@ -260,4 +281,9 @@ article.node .content {
 
 .views-field-field-services-image img {
 	filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+}
+
+.messages.status {
+    max-width: 1170px;
+    margin: 0 auto;
 }

@@ -6,7 +6,49 @@ a:hover {
 	text-decoration: underline;
 }
 
+.contextual-links li a {
+	font-size: 1rem;
+}
+
+.card,
+.fieldset-wrapper,
+body fieldset {
+	background-color: #3d3838;
+}
+
 /* Buttons */
+
+.progress-bar {
+	background-color: teal;
+}
+
+/* Buttons */
+
+.btn-primary {
+	border-color: #015a2f;
+}
+
+.btn-primary:hover {
+	background-color: #336930;
+	border-color: #0aaa01;
+}
+
+.btn-primary:active {
+	background-color: #113e2b;
+	border-color: #113e2b;
+}
+
+.btn-primary:focus {
+	background-color: #336930;
+	border-color: #0aaa01;
+}
+
+.btn-primary,
+.nav-pills .nav-link.active, 
+.nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: teal;
+}
 
 .node-webform input.webform-submit,
 a.button {
@@ -207,6 +249,11 @@ article.node .content {
 
 .btn:hover {
 	color: yellow;
+}
+
+.unpublished.node .content,
+.unpublished {
+	background-color: #4a1715;
 }
 
 /*  Services Block */

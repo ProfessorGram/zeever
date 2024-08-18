@@ -77,7 +77,7 @@
   .js .menu-dropdown ul {
     position: absolute;
     width: 12rem;
-    top: 1em;
+    top: 1.7em !important;
     display: none;
   }
 
@@ -124,8 +124,9 @@
     padding-bottom: 0;
   }
 
+  a.active-trail.active,
   .js .menu-dropdown li.has-children > a {
-    padding-right: 1.75rem;
+    padding-right: 58px;
   }
 
   .menu-dropdown a span.sub-arrow {

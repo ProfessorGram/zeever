@@ -27,6 +27,7 @@ Current Maintainers
 -------------------
 
 - [Tim Erickson](https://github.com/stpaultim).
+- [Graham Leach](https://github.com/ProfessorGram)
 
 Credits
 -------
